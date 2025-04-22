@@ -56,7 +56,7 @@ class DiseaseDiagnosis(models.Model):
 
 
 class DiagnosisBlock(models.Model):
-    diagnosis = models.ForeignKey(DiseaseDiagnosis, on_delete=models.CASCADE)
+    diagnosis = models.ForeignKey(DiseaseDiagnosis, on_delete=models.CASCADE)  # Set on_delete to CASCADE
     timestamp = models.DateTimeField(default=timezone.now)
     block_hash = models.CharField(max_length=64)
     previous_hash = models.CharField(max_length=64, null=True, blank=True)
@@ -64,7 +64,7 @@ class DiagnosisBlock(models.Model):
     class Meta:
         managed = True
         db_table = 'diagnosis_block'
-
+        
     def compute_hash(self):
         data = {
             "diagnosis_id": self.diagnosis.id,
